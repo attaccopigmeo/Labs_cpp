@@ -9,9 +9,20 @@ void guessGame() {
     int x = uniform_dist(e1);
     while (true) {
         int y;
-        std::cout << "Введите число от 0 до 9: ";
-        std::cin >> y;
-        count++;
+        bool success = false;
+        while (!success) {
+            std::cout << "Введите число от 0 до 9: ";
+            std::cin >> y;
+            if (!std::cin) {
+                std::cout << "Неверный ввод" << std::endl;
+                std::cin.clear();
+                std::string line;
+                std::getline(std::cin, line);
+            } else {
+                success = true;
+            }
+        }
+        ++count;
         if (x == y) {
             std::cout << "Вы угадали!" << std::endl;
             std::cout << "Количество попыток:  " << count << std::endl;

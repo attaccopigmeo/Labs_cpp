@@ -15,12 +15,35 @@ void deleteNegative(std::vector<int>& arr) {
 
 int main() {
     int n = 0;
-    std::cout << "Введите размер массива: ";
-    std::cin >> n;
+    bool success = false;
+    while (!success) {
+        std::cout << "Введите размер массива: ";
+        std::cin >> n;
+        if (!std::cin) {
+            std::cout << "Неверный ввод" << std::endl;
+            std::cin.clear();
+            std::string line;
+            std::getline(std::cin, line);
+        } else {
+            success = true;
+        }
+    }
     std::vector<int> arr(n);
     for (int i = 0; i < n; i++) {
-        std::cout << "Введите элемент массива: ";
-        std::cin >> arr[i];
+        success = false;
+        while (!success) {
+            std::cout << "Введите элемент массива: ";
+            std::cin >> arr[i];
+            if (!std::cin) {
+                std::cout << "Неверный ввод" << std::endl;
+                std::cin.clear();
+                std::string line;
+                std::getline(std::cin, line);
+            } else {
+                success = true;
+            }
+        }
+        
     }
     deleteNegative(arr);
     std::cout << "Результат: ";
