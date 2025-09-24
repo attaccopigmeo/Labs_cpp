@@ -13,11 +13,10 @@ int main() {
     while (!success) {
         std::cout << "Введите число a: ";
         std::cin >> a;
-        if (!std::cin) {
+        if (std::cin.fail() || std::cin.peek() != '\n') {
             std::cout << "Неверный ввод" << std::endl;
             std::cin.clear();
-            std::string line;
-            std::getline(std::cin, line);
+            std::cin.ignore(10000, '\n');
         } else {
             success = true;
         }
@@ -27,11 +26,10 @@ int main() {
         while (!success) {
             std::cout << "Введите число b: ";
             std::cin >> b;
-            if (!std::cin) {
+            if (std::cin.fail() || std::cin.peek() != '\n') {
                 std::cout << "Неверный ввод" << std::endl;
                 std::cin.clear();
-                std::string line;
-                std::getline(std::cin, line);
+                std::cin.ignore(10000, '\n');
             } else {
                 success = true;
             }

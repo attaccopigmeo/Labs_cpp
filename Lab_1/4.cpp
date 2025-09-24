@@ -19,11 +19,10 @@ int main() {
     while (!success) {
         std::cout << "Введите размер массива: ";
         std::cin >> n;
-        if (!std::cin) {
+        if (std::cin.fail() || std::cin.peek() != '\n') {
             std::cout << "Неверный ввод" << std::endl;
             std::cin.clear();
-            std::string line;
-            std::getline(std::cin, line);
+            std::cin.ignore(10000, '\n');
         } else {
             success = true;
         }
@@ -34,11 +33,10 @@ int main() {
         while (!success) {
             std::cout << "Введите элемент массива: ";
             std::cin >> arr[i];
-            if (!std::cin) {
+            if (std::cin.fail() || std::cin.peek() != '\n') {
                 std::cout << "Неверный ввод" << std::endl;
                 std::cin.clear();
-                std::string line;
-                std::getline(std::cin, line);
+                std::cin.ignore(10000, '\n');
             } else {
                 success = true;
             }

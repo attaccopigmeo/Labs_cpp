@@ -13,11 +13,10 @@ void guessGame() {
         while (!success) {
             std::cout << "Введите число от 0 до 9: ";
             std::cin >> y;
-            if (!std::cin) {
+            if (std::cin.fail() || std::cin.peek() != '\n') {
                 std::cout << "Неверный ввод" << std::endl;
                 std::cin.clear();
-                std::string line;
-                std::getline(std::cin, line);
+                std::cin.ignore(10000, '\n');
             } else {
                 success = true;
             }
