@@ -22,9 +22,11 @@ int main() {
         std::string x;
         success = false;
         while (!success) {
-            std::cout << "Введите элемент: ";
+            std::cout << "Введите слово (капсом): ";
             std::cin >> x;
-            if (std::cin.fail() || std::cin.peek() != '\n') {
+            std::string y = x;
+            std::transform(y.begin(), y.end(), y.begin(), ::toupper);
+            if (std::cin.fail() || std::cin.peek() != '\n' || y != x) {
                 std::cout << "Неверный ввод" << std::endl;
                 std::cin.clear();
                 std::cin.ignore(10000, '\n');
