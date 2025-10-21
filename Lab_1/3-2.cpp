@@ -8,7 +8,27 @@ x=5
 #include <string>
 
 std::string reverseListNums(int x) {
-    for (int i = x; i > 0; i --) {
-        
+    std::string numbers = " ";
+    for (int i = x; i >= 0; i --) {
+        numbers += std::to_string(i);
+        if (i > 0) numbers += " ";
     }
+    return numbers;
+}
+
+int main() {
+    int x;
+    bool success = false;
+    while (!success) {
+        std::cout << "Введите число: ";
+        std::cin >> x;
+        if (std::cin.fail() || std::cin.peek() != '\n' || x < 0) {
+            std::cout << "Неверный ввод" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+        } else {
+            success = true;
+        }
+    }
+    std::cout << reverseListNums(x) << std::endl;
 }
