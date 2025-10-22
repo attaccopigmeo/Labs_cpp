@@ -12,7 +12,7 @@ pos=3
 
 void add(std::vector<int>& arr, int x, int pos) {
     if (pos >= 0 && pos < arr.size()) {
-        arr[pos] = x;
+        arr.insert(arr.begin() + pos, x);
     }
 }
 
@@ -73,13 +73,13 @@ int main() {
         }
     }
     std::cout << std::endl;
-    std::cout << "Массив до замены: ";
+    std::cout << "Массив до вставки: ";
     for (int x : arr) {
         std::cout << x << " ";
     }
     std::cout << std::endl << std::endl;
     add(arr, x, pos);
-    std::cout << "Массив после замены: ";
+    std::cout << "Массив после вставки: ";
     for (int x : arr) {
         std::cout << x << " ";
     }
