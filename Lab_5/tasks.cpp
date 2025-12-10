@@ -48,7 +48,7 @@ size_t Tasks::countDoubledOddInBinary(const std::string &filename) {
     int v;
     while (ifs.read(reinterpret_cast<char*>(&v), sizeof(v))) {
     // "удвоенные нечетные числа среди компонент файла" — числа, которые являются удвоением нечётного числа,
-    // т.е. v == 2 * k, где k - odd. Эквивалентно: v % 2 == 0 and (v/2) % 2 != 0
+    // т.е. v == 2 * k, где k - нечетное. Эквивалентно: v % 2 == 0 and (v/2) % 2 != 0
         if (v % 2 == 0) {
             int half = v / 2;
             if (std::abs(half) % 2 == 1) ++count;
