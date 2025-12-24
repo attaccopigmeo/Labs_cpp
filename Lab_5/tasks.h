@@ -41,7 +41,7 @@ public:
 
     // Задание 5
     /*Текстовый файл: несколько целых чисел в строке; заполнить случайно и вычислить сумму нечётных элементов*/
-    static void fillTextMultipleIntsPerLine(const std::string &filename, size_t lines, size_t perLine, int minVal = -100, int maxVal = 100);
+    static void fillTextMultipleIntsPerLine(const std::string &filename, size_t lines, size_t maxPerLine, int minVal = -100, int maxVal = 100);
     static long long sumOddElementsInText(const std::string &filename);
 
     // Задание 6

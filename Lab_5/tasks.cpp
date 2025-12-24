@@ -49,6 +49,7 @@ size_t Tasks::countDoubledOddInBinary(const std::string &filename) {
     while (ifs.read(reinterpret_cast<char*>(&v), sizeof(v))) {
     // "удвоенные нечетные числа среди компонент файла" — числа, которые являются удвоением нечётного числа,
     // т.е. v == 2 * k, где k - нечетное. Эквивалентно: v % 2 == 0 and (v/2) % 2 != 0
+        std::cout << v;
         if (v % 2 == 0) {
             int half = v / 2;
             if (std::abs(half) % 2 == 1) ++count;
@@ -142,17 +143,37 @@ long long Tasks::squareDiffMaxMin(const std::string &filename) {
     return d * d;
 }
 
-void Tasks::fillTextMultipleIntsPerLine(const std::string &filename, size_t lines, size_t perLine, int minVal, int maxVal) {
+void Tasks::fillTextMultipleIntsPerLine(const std::string &filename, size_t lines, size_t maxPerLine, int minVal, int maxVal) {
     std::ofstream ofs(filename);
-    std::uniform_int_distribution<int> dist(minVal, maxVal);
-    for (size_t i = 0; i < perLine; ++i) {
-        for (size_t j = 0; j < perLine; ++j) {
-            ofs << dist(rng());
-            if (j+1 < perLine) ofs << ' ';
+    std::uniform_int_distribution<int> distVal(minVal, maxVal);
+    std::uniform_int_distribution<size_t> distCount(1, maxPerLine);
+
+    for (size_t i = 0; i < lines; ++i) {
+        size_t count = distCount(rng());
+        for (size_t j = 0; j < count; ++j) {
+            ofs << distVal(rng());
+            if (j + 1 < count) ofs << ' ';
         }
         ofs << '\n';
     }
 }
+
+void Tasks::fillTextMultipleIntsPerLine(const std::string &filename, size_t lines, size_t maxPerLine, int minVal, int maxVal) {
+    std::ofstream ofs(filename);
+
+    std::uniform_int_distribution<int> distVal(minVal, maxVal);
+    std::uniform_int_distribution<size_t> distCount(1, maxPerLine); // случайное количество чисел на строку
+
+    for (size_t i = 0; i < lines; ++i) {        // количество строк
+        size_t count = distCount(rng);          // количество чисел в этой строке
+        for (size_t j = 0; j < count; ++j) {
+            ofs << distVal(rng);
+            if (j + 1 < count) ofs << ' ';
+        }
+        ofs << '\n';
+    }
+}
+
 
 long long Tasks::sumOddElementsInText(const std::string &filename) {
     std::ifstream ifs(filename);
